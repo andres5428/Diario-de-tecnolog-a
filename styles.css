@@ -1,0 +1,372 @@
+:root {
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-family: "Montserrat", sans-serif;
+    padding: 2%;
+    background: white;
+    color: black;
+    border: 1px solid hsl(236, 72%, 79%);
+    border-radius: .25em;
+}
+
+.header {
+    display: flex;
+    position: static;
+    top: 0;
+    width: 100vw;
+    align-items: stretch;
+    justify-content: space-between;
+    background-color: lightgray;
+    height: 4em;
+    box-shadow: 0 3px 10px gray;
+    background: linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+    ;
+}
+
+.header_logo {
+    margin: 0.5em;
+    background-color: cornsilk;
+    height: 2.7em;
+    width: auto;
+    border-radius: 50%;
+    border: 4px solid transparent;
+}
+
+.header_navigation {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    width: 100vw;
+    height: 4em;
+}
+
+.header_navItem {
+    width: 14em;
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bolder;
+    color: whitesmoke;
+    align-self: center;
+    justify-content: space-between;
+}
+
+.header_navItem:hover {
+    /*padding-top: 1.25em;
+    padding-bottom: 1.25em;*/
+    width: 14em;
+    background-color: white;
+    font-weight: bolder;
+    color: black;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    /* transition: flex 1s ease;
+    min-height: calc( 100vh - var(--nav-height));
+    */
+    width: 100%;
+}
+
+
+/*Barra Lateral izquierda*/
+
+.content_left-nav {
+    width: 0;
+    transition: flex 1s ease;
+    background-color: transparent;
+    /*  transform: translate(-100%, 0);*/
+}
+
+
+/* Codigo menu hamburguesa */
+
+#menutoggle {
+    display: block;
+    position: relative;
+    height: 2.5em;
+    z-index: 1;
+    background: linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.navegacion {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    /* transform-origin: 0% 0%;*/
+    /*transform: translate(-100%, 0);*/
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+.navegacion a {
+    font-size: 0;
+    margin: 0;
+    display: inline-block;
+    padding: 1em;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    height: 2.5em;
+    /*padding: 0 0 1em 0;*/
+}
+
+.navegacion a:hover {
+    padding: 1em;
+    font-size: 1em;
+    background-color: white;
+    font-weight: bold;
+    color: black;
+    width: 15vw;
+}
+
+.hamburguesa {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    left: 20%;
+    cursor: pointer;
+    opacity: 0;
+    /* hide this */
+    z-index: 2;
+    /* and place it over the hamburger */
+    -webkit-touch-callout: none;
+}
+
+.linea {
+    display: block;
+    width: 30px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    left: 1.5%;
+    top: .5em;
+    background: white;
+    border-radius: 3px;
+    transform-origin: 4px 0px;
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
+}
+
+.hamburguesa:checked~.content_left-nav {
+    min-width: 17vw;
+    transform: translate(-100, 0);
+}
+
+.hamburguesa:checked~.content_left-nav .navegacion a {
+    min-width: 14vw;
+    font-size: 16px;
+}
+
+.hamburguesa:checked~.articles-container {
+    width: 70.4%;
+}
+
+#menutoggle .linea:first-child {
+    transform-origin: 0% 0%;
+}
+
+#menutoggle .linea:nth-last-child(2) {
+    transform-origin: 0% 100%;
+}
+
+
+/* Transform all the slices of hamburger into a crossmark.*/
+
+#menutoggle .hamburguesa:checked~.linea {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: white;
+}
+
+
+/*But let's hide the middle one.*/
+
+#menutoggle .hamburguesa:checked~.linea:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+
+/*Ohyeah and the last one should go the other direction*/
+
+#menutoggle .hamburguesa:checked~.linea:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+}
+
+
+/*Barra Central */
+
+.articles-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: calc( 100vh - var(--nav-height));
+    width: 87.6%;
+    /*overflow-y: scroll;*/
+}
+
+.read-more-state {
+    display: none;
+}
+
+.read-more-target {
+    opacity: 0;
+    max-height: 0;
+    font-size: 0;
+    transition: .25s ease;
+}
+
+.article_text {
+    opacity: 0;
+    max-height: 0;
+    font-size: 0;
+    transition: .25s ease;
+}
+
+.read-more-state:checked~.read-more-wrap .article_text {
+    opacity: 1;
+    font-size: inherit;
+    max-height: 60vw;
+}
+
+.read-more-state~.read-more-trigger:before {
+    content: 'Show more';
+}
+
+.read-more-state:checked~.read-more-trigger:before {
+    content: 'Show less';
+}
+
+.read-more-trigger {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 .5em;
+    color: #666;
+    font-size: .9em;
+    line-height: 2;
+    border: 1px solid #ddd;
+    border-radius: .25em;
+}
+
+
+/* Barra lateral derecha  */
+
+.content_lateral-menu {
+    justify-content: stretch;
+    width: 10%;
+    display: flex;
+    background: linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+    margin: 0;
+    display: inline-block;
+    padding: 1em;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.listalateral {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+.listalateral li {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1em;
+    padding: 0.8em;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+.article {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding: 2em;
+}
+
+.article:nth-child(2n) {
+    flex-grow: 2;
+}
+
+.article_picture {
+    height: 6em;
+    margin-right: 2em;
+}
+
+.contenedor_fondo{
+    display: grid;
+    grid-gap: 10px;
+    /*grid-template: repeat(4, 1fr) / 50px 100px;*/
+}
+
+
+.buscador{
+    grid-row-start: 1;
+    display: grid;
+    grid-template-columns: .5fr 1fr .5fr;
+    height: 5em;
+    width: 87.5%;
+}
+
+
+.header_search {
+    grid-area: 1 / 2 / span 1 / span 1;
+    font-size: 2em;
+    padding: .5em;
+    border: solid blue 1px;
+    text-align: center;
+}
+
+.fa fa-search{
+    width: 2em;
+    height: 2em;
+}
+
+footer {
+    grid-area: 2 / 1 / 2 / 3;
+    border: hsl(237, 63%, 64%) solid;
+    background-color: hsl(237, 63%, 64%);
+    width: 100%;
+    color: cornsilk;
+    font-size: 1em;
+    padding: 2em;
+    text-align: center;
+}
+.oculto{
+    opacity: 0;
+}
+.header_search:hover~ .oculto{
+    opacity: 1;
+}
+
+
+/*# sourceMappingURL=styles.css.map */
